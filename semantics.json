@@ -1,0 +1,92 @@
+[
+  {
+    "label": "3D File",
+    "name": "glbModel",
+    "type": "file",
+    "optional": true,
+    "description": "3D Model (.glb | .gltf)"
+  },
+  {
+    "name": "modelViewerWidget",
+    "widget": "modelViewerWidget",
+    "label": "Model Viewer Editor Widget React",
+    "description": "Edit Hotspots in < model-viewer > React",
+    "importance": "high",
+    "type": "group",
+    "fields": [
+      {
+        "name": "interactions",
+        "type": "list",
+        "min": 0,
+        "field": {
+          "name": "interaction",
+          "type": "group",
+          "fields": [
+            {
+              "name": "labelText",
+              "type": "text",
+              "label": "Label",
+              "optional": true,
+              "description": "If left blank no label will be displayed and we'll try to use the title field for screen readers"
+            },
+            {
+              "name": "label",
+              "type": "group",
+              "label": "Label Settings",
+              "importance": "low",
+              "fields": [
+                {
+                  "name": "labelPosition",
+                  "type": "select",
+                  "label": "Label position",
+                  "description": "Choose where the label should appear",
+                  "options": [
+                    {
+                      "value": "inherit",
+                      "label": "Use behavioral setting"
+                    },
+                    {
+                      "value": "right",
+                      "label": "Right aligned"
+                    },
+                    {
+                      "value": "left",
+                      "label": "Left aligned"
+                    },
+                    {
+                      "value": "top",
+                      "label": "Top aligned"
+                    },
+                    {
+                      "value": "bottom",
+                      "label": "Bottom aligned"
+                    }
+                  ],
+                  "default": "inherit"
+                }
+              ]
+            },
+            {
+              "name": "action",
+              "type": "library",
+              "options": [
+                "H5P.AdvancedText 1.1",
+                "H5P.Image 1.1",
+                "H5P.Audio 1.5",
+                "H5P.Video 1.6",
+                "H5P.QuestionSet 1.20",
+                "H5P.Questionnaire 1.3",
+                "H5P.FileForDownload 1.0"
+              ]
+            },
+            {
+              "name": "interactionpos",
+              "type": "text"
+            }
+          ]
+        }
+      }
+    ],
+    "optional": true
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "title": "ModelViewer",
+  "description": "Explore an interactive world in 3D.",
+  "majorVersion": 1,
+  "minorVersion": 7,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "codefluegel",
+  "license": "MIT",
+  "machineName": "H5P.ModelViewer",
+  "embedTypes": ["iframe"],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.ModelViewerScript",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "dist/h5p-model-viewer.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-model-viewer.css"
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.ModelViewer",
+      "majorVersion": 1,
+      "minorVersion": 7
+    }
+  ]
+}

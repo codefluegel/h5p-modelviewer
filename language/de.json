@@ -1,0 +1,54 @@
+{
+  "semantics": [
+    {
+      "label": "3D File",
+      "description": "3D Model (.glb | .gltf)"
+    },
+    {
+      "label": "Model Viewer Editor Widget React",
+      "description": "Edit Hotspots in < model-viewer > React",
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "label": "Label",
+                "description": "If left blank no label will be displayed and we'll try to use the title field for screen readers"
+              },
+              {
+                "label": "Label Settings",
+                "fields": [
+                  {
+                    "label": "Label position",
+                    "description": "Choose where the label should appear",
+                    "options": [
+                      {
+                        "label": "Use behavioral setting"
+                      },
+                      {
+                        "label": "Right aligned"
+                      },
+                      {
+                        "label": "Left aligned"
+                      },
+                      {
+                        "label": "Top aligned"
+                      },
+                      {
+                        "label": "Bottom aligned"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Model Title",
+          "description": "Used to identify the model"
+        }
+      ]
+    }
+  ]
+}
