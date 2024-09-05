@@ -85,6 +85,16 @@
             }
           ]
         }
+      },
+      {
+        "name": "modelId",
+        "type": "number"
+      },
+      {
+        "name": "modelname",
+        "type": "text",
+        "label": "Model Title",
+        "description": "Used to identify the model"
       }
     ],
     "optional": true

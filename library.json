@@ -14,6 +14,17 @@
       "machineName": "H5P.ModelViewerScript",
       "majorVersion": 1,
       "minorVersion": 0
+    },
+    {
+      "machineName": "H5P.FontIcons",
+      "majorVersion": 1,
+      "minorVersion": 0,
+      "patchVersion": 6
+    },
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
     }
   ],
   "preloadedJs": [
