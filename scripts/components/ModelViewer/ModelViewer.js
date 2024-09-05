@@ -16,6 +16,8 @@ const ModelViewer = (props) => {
       src={modelPath}
       alt='A 3D model of an astronaut'
       auto-rotate
+      ar
+      ar-scale='fixed'
       camera-controls
     >
       {hotspots &&
