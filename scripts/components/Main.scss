@@ -166,6 +166,11 @@
     margin-top:2px;
   }
 
+  .h5p_question_set:before {
+    content: $question_set;
+    font-family: 'H5PFontAwesome4';
+  }
+
   .h5p_file_for_download:before {
     content: $fileForDownload;
     font-family: 'H5PFontAwesome4';
