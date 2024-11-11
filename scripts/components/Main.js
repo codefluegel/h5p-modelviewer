@@ -6,6 +6,7 @@ import ModelViewer from './ModelViewer/ModelViewer';
 import Dialog from './Dialog/Dialog';
 import InteractionContent from './Dialog/InteractionContent';
 import ToolBar from './Toolbar/Toolbar';
+import AudioButton from './HUD/Buttons/AudioButton.js';
 
 export default class Main extends React.Component {
   constructor(props) {
