@@ -10,7 +10,7 @@
     "name": "modelViewerWidget",
     "widget": "modelViewerWidget",
     "label": "Model Viewer Editor Widget React",
-    "description": "Edit Hotspots in < model-viewer > React",
+    "description": "Edit Hotspots in model-viewer React",
     "importance": "high",
     "type": "group",
     "fields": [
