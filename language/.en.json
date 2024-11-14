@@ -6,7 +6,7 @@
     },
     {
       "label": "Model Viewer Editor Widget React",
-      "description": "Edit Hotspots in < model-viewer > React",
+      "description": "Edit Hotspots in model-viewer React",
       "fields": [
         {
           "field": {
@@ -40,10 +40,13 @@
                     ]
                   }
                 ]
-              }
+              },
+              {},
+              {}
             ]
           }
         },
+        {},
         {
           "label": "Model Title",
           "description": "Used to identify the model"
