@@ -10,9 +10,12 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props);
 
+    const modelViewerId = `model-viewer-${H5P.createUUID()}`;
+
     this.state = {
       modelPath: this.props.initialModelPath,
       modelViewerInstance: null,
+      modelViewerId,
       animations: [],
       interactions: this.props.paramInteractions,
       showInteractionDialog: false,
@@ -20,7 +23,7 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
-    const modelViewer = document.getElementById('model-viewer');
+    const modelViewer = document.getElementById(this.state.modelViewerId);
     if (!modelViewer) return;
 
     modelViewer.autoRotate = false;
@@ -86,7 +89,7 @@ export default class Main extends React.Component {
         <div className='container'>
           <div className='mv-container'>
             <ModelViewer
-              id={`model-viewer-${H5P.createUUID()}`}
+              id={this.state.modelViewerId}
               handleClick={this.handleModelClick.bind(this)}
               hotspots={this.state.interactions}
               modelPath={this.state.modelPath}
