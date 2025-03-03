@@ -20,7 +20,11 @@ const ToolBar = (props) => {
     <div className='tool-bar'>
       <div>
         {animations.length > 0 && (
-          <button className='button' onClick={handlePlayPause}>
+          <button
+            className='button'
+            aria-label={buttonState ? 'Pause model animation' : 'Play model animation'}
+            onClick={handlePlayPause}
+          >
             {buttonState ? 'pause' : 'play'}
           </button>
         )}
