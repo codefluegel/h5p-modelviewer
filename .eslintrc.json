@@ -9,13 +9,11 @@
     "node": true,
     "es2020": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:jsdoc/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:jsdoc/recommended"],
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2020
+    "ecmaVersion": 2020,
+    "tabWidth": 2
   },
   "rules": {
     "valid-jsdoc": "off",
@@ -27,14 +25,17 @@
     "space-infix-ops": ["error", { "int32Hint": false }],
     "eqeqeq": ["error", "smart"],
     "space-before-blocks": "error",
-    "space-before-function-paren": ["error", {
-      "anonymous": "always",
-      "named": "never",
-      "asyncArrow": "always"
-    }],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
     "no-extra-boolean-cast": "off",
     "no-console": ["error", { "allow": ["warn", "error", "log"] }],
-    "quotes": ["error", "double"],
+    "quotes": ["error", "single"],
     "arrow-parens": ["error", "always"],
     "object-curly-spacing": ["error", "always"],
     "no-alert": ["error"]

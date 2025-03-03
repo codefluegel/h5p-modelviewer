@@ -1,27 +1,4 @@
-@import '../../styles/icons';
-
-.h5p-text-dialog .nav-button-wrapper {
-  top: -1em;
-  right: -1em;
-  left: auto;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
-  border: 8px solid #fff;
-  background-color: #ebebeb;
-  border-radius: 50%;
-  transition: background 0.5s linear;
-}
-
-.h5p-text-dialog .outer-nav-button {
-  background: transparent;
-}
-
-.h5p-text-dialog .nav-button {
-  background: transparent;
-}
-
-.h5p-text-dialog .nav-button-wrapper:hover {
-  background: #d6d6d6;
-}
+@use "../../styles/icons";
 
 .h5p-text-dialog {
   position: absolute;
@@ -36,6 +13,26 @@
   padding: 2em;
   display: flex;
   box-sizing: border-box;
+
+  .nav-button-wrapper {
+    top: -1em;
+    right: -1em;
+    left: auto;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    border: 8px solid #fff;
+    background-color: #ebebeb;
+    border-radius: 50%;
+    transition: background 0.5s linear;
+  }
+
+  .nav-button-wrapper:hover {
+    background: #d6d6d6;
+  }
+
+  .outer-nav-button,
+  .nav-button {
+    background: transparent;
+  }
 
   .close-button-wrapper {
     line-height: 1;
@@ -56,42 +53,48 @@
     transition: background 0.5s linear;
     z-index: 2;
     cursor: pointer;
-  }
 
-  .close-button-wrapper:hover {
-    background: #d6d6d6;
-  }
+    &:hover {
+      background: #d6d6d6;
+    }
 
-  .close-button-wrapper:before {
-    font-family: "360-image";
-    content: $close;
-    vertical-align: text-bottom;
+    &:before {
+      font-family: "360-image";
+      content: icons.$close;
+      vertical-align: text-bottom;
+    }
   }
 }
+
 .h5p-medium-tablet-size .h5p-text-dialog {
   width: 86%;
-  margin: 0em;
+  margin: 0;
   padding: 0.25em;
 }
+
 .h5p-text-content {
   flex: 1;
   max-height: 100%;
   max-width: 100%;
   overflow-y: auto;
-}
-.h5p-text-content::-webkit-scrollbar {
-  width: 0.5em;
-  background: #fff;
-}
-.h5p-text-content::-webkit-scrollbar-thumb {
-  background: #ddd;
-}
-.h5p-text-content::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
-.h5p-text-content::-webkit-scrollbar-thumb:active,
-.h5p-text-content::-webkit-scrollbar-thumb:focus {
-  background: #888;
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    background: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+
+    &:hover {
+      background: #aaa;
+    }
+
+    &:active,
+    &:focus {
+      background: #888;
+    }
+  }
 }
 
 .h5p-text-overlay {
@@ -100,6 +103,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 4;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import './Dialog.scss';
-import { H5PContext } from '../../context/H5PContext';
 
 export default class Dialog extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ export default class Dialog extends React.Component {
     }
   }
 
-  handleResize(isNarrow) {
+  handleResize() {
     if (this.el) {
       // Reset to allow size growth
       this.el.style.width = '';
@@ -64,5 +63,3 @@ export default class Dialog extends React.Component {
     );
   }
 }
-
-Dialog.contextType = H5PContext;

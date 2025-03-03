@@ -1,7 +1,7 @@
 {
   "name": "h5p-model-viewer",
   "version": "0.5.0",
-  "description": "Create 360 image content",
+  "description": "Create 3D Model content",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ndlano/h5p-escape-room.git"
+    "url": "git+https://github.com/codefluegel/h5p-modelviewer.git"
   },
   "author": "CodeFluegel",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ndlano/h5p-escape-room/issues"
-  },
-  "homepage": "https://github.com/ndlano/h5p-escape-room#readme",
+  "homepage": "https://github.com/codefluegel/h5p-modelviewer#readme",
   "devDependencies": {
     "@babel/cli": "^7.24.7",
     "@babel/core": "^7.24.7",
@@ -40,10 +37,12 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.0.0",
     "he": "^1.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0"
   },
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead"
 }

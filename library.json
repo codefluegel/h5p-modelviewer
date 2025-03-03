@@ -3,18 +3,13 @@
   "description": "Explore an interactive world in 3D.",
   "majorVersion": 1,
   "minorVersion": 7,
-  "patchVersion": 1,
+  "patchVersion": 2,
   "runnable": 1,
   "author": "codefluegel",
   "license": "MIT",
   "machineName": "H5P.ModelViewer",
   "embedTypes": ["iframe"],
   "preloadedDependencies": [
-    {
-      "machineName": "H5P.ModelViewerScript",
-      "majorVersion": 1,
-      "minorVersion": 0
-    },
     {
       "machineName": "H5P.FontIcons",
       "majorVersion": 1,
