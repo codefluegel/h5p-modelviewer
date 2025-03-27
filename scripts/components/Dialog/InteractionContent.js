@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { H5PContext } from '../../context/H5PContext';
 import './InteractionContent.scss';
@@ -48,3 +49,15 @@ export default class InteractionContent extends React.Component {
 }
 
 InteractionContent.contextType = H5PContext;
+
+InteractionContent.propTypes = {
+  hotspot: PropTypes.shape({
+    action: PropTypes.shape({
+      library: PropTypes.string.isRequired,
+      metadata: PropTypes.shape({
+        contentType: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+  onResize: PropTypes.func.isRequired,
+};

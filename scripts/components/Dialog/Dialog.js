@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; 
 import React from 'react';
 import './Dialog.scss';
 
@@ -98,3 +99,16 @@ export default class Dialog extends React.Component {
     );
   }
 }
+
+// Define prop types for the Dialog component
+Dialog.propTypes = {
+  title: PropTypes.string.isRequired, // Title of the dialog
+  children: PropTypes.node.isRequired, // Content inside the dialog
+  dialogClasses: PropTypes.arrayOf(PropTypes.string), // Additional CSS classes for the dialog
+  onHideTextDialog: PropTypes.func.isRequired, // Function to handle closing the dialog
+};
+
+// Define default props for optional props
+Dialog.defaultProps = {
+  dialogClasses: [], // Default to an empty array if no classes are provided
+};

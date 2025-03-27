@@ -1,6 +1,7 @@
-// component to render hotspots from main a functional component
+import PropTypes from 'prop-types'; 
 import React, { useState } from 'react';
 import './Toolbar.scss';
+
 const ToolBar = (props) => {
   const { animations, modelViewerInstance } = props;
   // buttonstate
@@ -37,3 +38,13 @@ const ToolBar = (props) => {
 };
 
 export default ToolBar;
+
+ToolBar.propTypes = {
+  animations: PropTypes.arrayOf(PropTypes.object).isRequired, 
+  modelViewerInstance: PropTypes.shape({
+    availableAnimations: PropTypes.arrayOf(PropTypes.object).isRequired, 
+    paused: PropTypes.bool.isRequired, 
+    play: PropTypes.func.isRequired,
+    pause: PropTypes.func.isRequired,
+  }).isRequired, 
+};

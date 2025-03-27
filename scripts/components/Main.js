@@ -4,6 +4,7 @@ import InteractionContent from './Dialog/InteractionContent';
 import './Main.scss';
 import ModelViewer from './ModelViewer/ModelViewer';
 import ToolBar from './Toolbar/Toolbar';
+import PropTypes from 'prop-types';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -110,3 +111,20 @@ export default class Main extends React.Component {
     );
   }
 }
+
+Main.propTypes = {
+  modelPath: PropTypes.string,
+  initialModelPath: PropTypes.string.isRequired,
+  paramInteractions: PropTypes.arrayOf(
+    PropTypes.shape({
+      interactionpos: PropTypes.string,
+      action: PropTypes.shape({
+        library: PropTypes.string.isRequired,
+        metadata: PropTypes.shape({
+          contentType: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+      labelText: PropTypes.string,
+    })
+  ),
+};

@@ -1,4 +1,5 @@
 import '@google/model-viewer';
+import PropTypes from 'prop-types';
 import React from 'react';
 import './ModelViewer.scss';
 
@@ -62,3 +63,21 @@ const ModelViewer = (props) => {
 };
 
 export default ModelViewer;
+
+ModelViewer.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  hotspots: PropTypes.arrayOf(
+    PropTypes.shape({
+      interactionpos: PropTypes.string,
+      action: PropTypes.shape({
+        metadata: PropTypes.shape({
+          contentType: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+      labelText: PropTypes.string,
+    })
+  ).isRequired,
+  modelPath: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  showContentModal: PropTypes.func.isRequired,
+};

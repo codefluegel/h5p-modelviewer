@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch",
-    "lint": "eslint \"./src/**/*.js\""
+    "lint": "eslint \"./scripts/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "@google/model-viewer": "^4.0.0",
     "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
     "he": "^1.2.0",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
