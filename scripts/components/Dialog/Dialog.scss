@@ -1,28 +1,47 @@
 @use "../../styles/icons";
 
+// Define variables for commonly used values
+$dialog-padding: 2em;
+$dialog-background: white;
+$dialog-z-index: 1;
+$dialog-border-radius: 50%;
+$dialog-box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+$dialog-transition: background 0.5s linear;
+$dialog-close-button-size: 2em;
+$dialog-close-button-border: 8px solid #fff;
+$dialog-overlay-background: rgba(0, 0, 0, 0.7);
+$scrollbar-width: 0.5em;
+$scrollbar-thumb-color: #ddd;
+$scrollbar-thumb-hover-color: #aaa;
+$scrollbar-thumb-active-color: #888;
+
+$dialog-width: 80vw; 
+$dialog-max-width: 50rem; 
+$dialog-max-height: 45rem; 
+
 .h5p-text-dialog {
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  width: 80%;
-  max-width: 93%;
-  max-height: 90%;
-  background: white;
-  z-index: 1;
-  padding: 2em;
+  width: $dialog-width;
+  max-width: $dialog-max-width;
+  max-height: $dialog-max-height;
+  background: $dialog-background;
+  z-index: $dialog-z-index;
+  padding: $dialog-padding;
   display: flex;
   box-sizing: border-box;
 
   .nav-button-wrapper {
-    top: -1em;
-    right: -1em;
+    top: -$dialog-padding / 2;
+    right: -$dialog-padding / 2;
     left: auto;
-    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
-    border: 8px solid #fff;
+    box-shadow: $dialog-box-shadow;
+    border: $dialog-close-button-border;
     background-color: #ebebeb;
-    border-radius: 50%;
-    transition: background 0.5s linear;
+    border-radius: $dialog-border-radius;
+    transition: $dialog-transition;
   }
 
   .nav-button-wrapper:hover {
@@ -39,19 +58,19 @@
     position: absolute;
     font-size: 1em;
     box-sizing: content-box;
-    width: 2em;
-    height: 2em;
+    width: $dialog-close-button-size;
+    height: $dialog-close-button-size;
     padding: 0;
 
-    top: -1em;
-    right: -1em;
+    top: -$dialog-padding / 2;
+    right: -$dialog-padding / 2;
 
-    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
-    border: 8px solid #fff;
+    box-shadow: $dialog-box-shadow;
+    border: $dialog-close-button-border;
     background-color: #ebebeb;
-    border-radius: 50%;
-    transition: background 0.5s linear;
-    z-index: 2;
+    border-radius: $dialog-border-radius;
+    transition: $dialog-transition;
+    z-index: $dialog-z-index + 1;
     cursor: pointer;
 
     &:hover {
@@ -67,9 +86,10 @@
 }
 
 .h5p-medium-tablet-size .h5p-text-dialog {
-  width: 86%;
+  width: 90vw; // Adjust width for medium tablet size
+  max-width: $dialog-max-width;
   margin: 0;
-  padding: 0.25em;
+  padding: $dialog-padding / 2; // Reduce padding for smaller screens
 }
 
 .h5p-text-content {
@@ -79,20 +99,20 @@
   overflow-y: auto;
 
   &::-webkit-scrollbar {
-    width: 0.5em;
-    background: #fff;
+    width: $scrollbar-width;
+    background: $dialog-background;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #ddd;
+    background: $scrollbar-thumb-color;
 
     &:hover {
-      background: #aaa;
+      background: $scrollbar-thumb-hover-color;
     }
 
     &:active,
     &:focus {
-      background: #888;
+      background: $scrollbar-thumb-active-color;
     }
   }
 }
@@ -103,6 +123,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 4;
+  background: $dialog-overlay-background;
+  z-index: $dialog-z-index + 3;
 }

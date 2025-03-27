@@ -19,30 +19,36 @@ export default class Main extends React.Component {
       interactions: this.props.paramInteractions,
       showInteractionDialog: false,
     };
-  }
 
+    this.handleLoad = this.handleLoad.bind(this);
+  }
   componentDidMount() {
     const modelViewer = document.getElementById(this.state.modelViewerId);
     if (!modelViewer) return;
 
     modelViewer.autoRotate = false;
 
-    const handleLoad = () => {
-      this.setState({
-        interactions: this.state.interactions,
-        modelViewerInstance: modelViewer,
-        animations: modelViewer.availableAnimations,
-      });
-    };
-
-    modelViewer.addEventListener('load', handleLoad, { once: true });
+    modelViewer.addEventListener('load', this.handleLoad, { once: true });
 
     this.setState({ modelViewerInstance: modelViewer });
   }
 
   componentWillUnmount() {
-    // remove event listener
-    this.state.modelViewerInstance.removeEventListener('load');
+    // Safely remove the event listener if the modelViewerInstance exists
+    if (this.state.modelViewerInstance) {
+      this.state.modelViewerInstance.removeEventListener('load', this.handleLoad);
+    }
+  }
+
+  handleLoad() {
+    const modelViewer = this.state.modelViewerInstance;
+
+    if (modelViewer) {
+      this.setState({
+        interactions: this.state.interactions,
+        animations: modelViewer.availableAnimations,
+      });
+    }
   }
 
   handleModelClick() {

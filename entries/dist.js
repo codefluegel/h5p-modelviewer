@@ -1,4 +1,4 @@
-import Wrapper from './../src/app.js';
+import Wrapper from './../scripts/app.js';
 
 // Load library
 H5P.ModelViewer = Wrapper;

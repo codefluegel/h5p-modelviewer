@@ -1,6 +1,6 @@
 // component to render hotspots from main a functional component
 import React, { useState } from 'react';
-
+import './Toolbar.scss';
 const ToolBar = (props) => {
   const { animations, modelViewerInstance } = props;
   // buttonstate
@@ -24,7 +24,7 @@ const ToolBar = (props) => {
       <div>
         {animations.length > 0 && (
           <button
-            className='button'
+            className='toolbar-btn'
             aria-label={buttonState ? pauseLabel : playLabel}
             onClick={handlePlayPause}
           >

@@ -16,7 +16,6 @@ export default class InteractionContent extends React.Component {
       return;
     }
 
-    // Remove any old content
     while (contentRef.firstChild) {
       contentRef.removeChild(contentRef.firstChild);
     }

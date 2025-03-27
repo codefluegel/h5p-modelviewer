@@ -1,5 +1,6 @@
 import '@google/model-viewer';
 import React from 'react';
+import './ModelViewer.scss';
 
 const ModelViewer = (props) => {
   const { handleClick, hotspots, modelPath, id, showContentModal } = props;
