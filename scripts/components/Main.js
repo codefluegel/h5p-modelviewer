@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import Dialog from './Dialog/Dialog';
 import InteractionContent from './Dialog/InteractionContent';
@@ -105,7 +104,3 @@ export default class Main extends React.Component {
     );
   }
 }
-
-Main.propTypes = {
-  modelPath: PropTypes.string,
-};

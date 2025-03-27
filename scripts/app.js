@@ -1,12 +1,12 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import Main from "./components/Main";
-import { H5PContext } from "./context/H5PContext";
-import { sanitizeContentTypeParameters } from "./utils/sanitization";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import Main from './components/Main';
+import { H5PContext } from './context/H5PContext';
+import { sanitizeContentTypeParameters } from './utils/sanitization';
 
 export default class Wrapper extends H5P.EventDispatcher {
   constructor(params, contentId, extras = {}) {
-    super("modelviewer");
+    super('modelviewer');
 
     this.params = sanitizeContentTypeParameters(params);
     this.contentId = contentId;
@@ -22,11 +22,11 @@ export default class Wrapper extends H5P.EventDispatcher {
           initialModelPath={path}
           paramInteractions={this.params.modelViewerWidget.interactions}
         />
-      </H5PContext.Provider>,
+      </H5PContext.Provider>
     );
 
     window.requestAnimationFrame(() => {
-      this.trigger("resize");
+      this.trigger('resize');
     });
   }
 
@@ -34,15 +34,15 @@ export default class Wrapper extends H5P.EventDispatcher {
     this.container = $container.get(0);
 
     const createElements = () => {
-      this.wrapper = document.createElement("div");
-      this.wrapper.classList.add("h5p-modelviewer");
+      this.wrapper = document.createElement('div');
+      this.wrapper.classList.add('h5p-editor-modelviewer');
 
       this.render();
 
       this.isAttached = true;
     };
 
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
 
     if (!this.wrapper) {
       createElements();
@@ -50,7 +50,7 @@ export default class Wrapper extends H5P.EventDispatcher {
 
     // Append elements to DOM
     $container[0].appendChild(this.wrapper);
-    $container[0].classList.add("h5p-modelviewer");
+    $container[0].classList.add('h5p-modelviewer');
   }
 
   getRect() {
@@ -74,9 +74,9 @@ export default class Wrapper extends H5P.EventDispatcher {
     const mobileThreshold = 815;
     const wrapperSize = this.wrapper.getBoundingClientRect();
     if (wrapperSize.width < mobileThreshold) {
-      this.wrapper.classList.add("mobile");
+      this.wrapper.classList.add('mobile');
     } else {
-      this.wrapper.classList.remove("mobile");
+      this.wrapper.classList.remove('mobile');
     }
   }
 }

@@ -6,6 +6,9 @@ const ToolBar = (props) => {
   // buttonstate
   const [buttonState, setButtonState] = useState(false);
 
+  const playLabel = H5P.t('H5P.ModelViewer-1.7', 'play');
+  const pauseLabel = H5P.t('H5P.ModelViewer-1.7', 'pause');
+
   const handlePlayPause = () => {
     setButtonState(!buttonState);
 
@@ -22,7 +25,7 @@ const ToolBar = (props) => {
         {animations.length > 0 && (
           <button
             className='button'
-            aria-label={buttonState ? 'Pause model animation' : 'Play model animation'}
+            aria-label={buttonState ? pauseLabel : playLabel}
             onClick={handlePlayPause}
           >
             {buttonState ? 'pause' : 'play'}

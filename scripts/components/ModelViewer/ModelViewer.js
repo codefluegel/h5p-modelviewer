@@ -8,6 +8,13 @@ const ModelViewer = (props) => {
     showContentModal(hotspot, index);
   };
 
+  const handleKeyDown = (event, hotspot, index) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openModalByType(hotspot, index);
+    }
+  };
+
   return (
     <model-viewer
       id={id}
@@ -17,6 +24,7 @@ const ModelViewer = (props) => {
       auto-rotate
       ar
       ar-scale='fixed'
+      alt={modelPath.split('/').pop().split('.').slice(0, -1).join('.')}
       camera-controls
     >
       {hotspots &&
@@ -30,10 +38,19 @@ const ModelViewer = (props) => {
                 key={index}
                 slot={`hotspot-${index}`}
                 data-surface={hotspot.interactionpos}
+                role='button'
+                tabIndex={0}
                 onClick={() => openModalByType(hotspot, index)}
+                onKeyDown={(event) => handleKeyDown(event, hotspot, index)}
               >
-                <span className='hotspot-label' onClick={() => openModalByType(hotspot, index)}>
-                  {`${index + 1}. ${hotspot.labelText}`}{' '}
+                <span
+                  className='hotspot-label'
+                  onClick={() => openModalByType(hotspot, index)}
+                  onKeyDown={(event) => handleKeyDown(event, hotspot, index)}
+                  role='button'
+                  tabIndex={0}
+                >
+                  {`${hotspot.labelText}`}
                 </span>
               </div>
             )
