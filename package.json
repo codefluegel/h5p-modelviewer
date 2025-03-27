@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch",
-    "lint": "eslint \"./scripts/**/*.js\""
+    "lint": "npx eslint \"./scripts/**/*.js\""
   },
   "repository": {
     "type": "git",
