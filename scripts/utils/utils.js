@@ -11,7 +11,8 @@ export const extend = (...theArgs) => {
       if (Object.prototype.hasOwnProperty.call(theArgs[i], key)) {
         if (typeof theArgs[0][key] === 'object' && typeof theArgs[i][key] === 'object') {
           extend(theArgs[0][key], theArgs[i][key]);
-        } else {
+        }
+        else {
           theArgs[0][key] = theArgs[i][key];
         }
       }

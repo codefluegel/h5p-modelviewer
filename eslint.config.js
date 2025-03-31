@@ -1,33 +1,24 @@
-import js from '@eslint/js';
+import eslintConfigSnordianH5P from 'eslint-config-snordian-h5p';
 import pluginReact from 'eslint-plugin-react';
-import { defineConfig } from 'eslint/config';
-import globals from 'globals';
 
-export default defineConfig([
+export default [
+  eslintConfigSnordianH5P.configs['flat/recommended'],
   {
-    files: ['**/*.{js,jsx}'],
+    name: 'react-config',
     ignores: ['dist/**/*', 'webpack.config.js'],
+    plugins: {
+      react: pluginReact,
+    },
+    rules: {
+      'react/prop-types': 'warn', // If you want to add prop types
+      // Other rules that you want to set
+    },
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        H5P: 'readonly',
-      },
       parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
         ecmaFeatures: {
-          jsx: true,
+          jsx: true, // Activate support for JSX
         },
       },
     },
-    plugins: { js },
-    extends: ['js/recommended'],
   },
-  {
-    ...pluginReact.configs.flat.recommended,
-    rules: {
-      ...pluginReact.configs.flat.recommended.rules,
-      'react/prop-types': 'warn',
-    },
-  },
-]);
+];

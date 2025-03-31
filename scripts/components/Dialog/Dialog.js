@@ -34,7 +34,8 @@ export default class Dialog extends React.Component {
   handleKeyDown(event) {
     if (event.key === 'Escape') {
       this.props.onHideTextDialog();
-    } else if (event.key === 'Tab') {
+    }
+    else if (event.key === 'Tab') {
       this.trapFocus(event);
     }
   }
@@ -46,7 +47,8 @@ export default class Dialog extends React.Component {
     if (event.shiftKey && document.activeElement === firstElement) {
       event.preventDefault();
       lastElement.focus();
-    } else if (!event.shiftKey && document.activeElement === lastElement) {
+    }
+    else if (!event.shiftKey && document.activeElement === lastElement) {
       event.preventDefault();
       firstElement.focus();
     }
