@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import React from 'react';
 import './Dialog.scss';
 
@@ -16,32 +16,25 @@ export default class Dialog extends React.Component {
   }
 
   componentDidMount() {
-    // Save the last focused element before opening the dialog
     this.lastFocusedElement = document.activeElement;
 
-    // Focus the dialog
     this.focusFirstElement();
 
-    // Add event listener for keyboard events
     document.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    // Restore focus to the last focused element
     if (this.lastFocusedElement) {
       this.lastFocusedElement.focus();
     }
 
-    // Remove event listener for keyboard events
     document.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleKeyDown(event) {
     if (event.key === 'Escape') {
-      // Close the dialog when Escape is pressed
       this.props.onHideTextDialog();
     } else if (event.key === 'Tab') {
-      // Trap focus within the dialog
       this.trapFocus(event);
     }
   }
@@ -51,11 +44,9 @@ export default class Dialog extends React.Component {
     const lastElement = this.focusableElements[this.focusableElements.length - 1];
 
     if (event.shiftKey && document.activeElement === firstElement) {
-      // Shift + Tab: Move focus to the last element
       event.preventDefault();
       lastElement.focus();
     } else if (!event.shiftKey && document.activeElement === lastElement) {
-      // Tab: Move focus to the first element
       event.preventDefault();
       firstElement.focus();
     }
@@ -100,15 +91,13 @@ export default class Dialog extends React.Component {
   }
 }
 
-// Define prop types for the Dialog component
 Dialog.propTypes = {
-  title: PropTypes.string.isRequired, // Title of the dialog
-  children: PropTypes.node.isRequired, // Content inside the dialog
-  dialogClasses: PropTypes.arrayOf(PropTypes.string), // Additional CSS classes for the dialog
-  onHideTextDialog: PropTypes.func.isRequired, // Function to handle closing the dialog
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  dialogClasses: PropTypes.arrayOf(PropTypes.string),
+  onHideTextDialog: PropTypes.func.isRequired,
 };
 
-// Define default props for optional props
 Dialog.defaultProps = {
-  dialogClasses: [], // Default to an empty array if no classes are provided
+  dialogClasses: [],
 };

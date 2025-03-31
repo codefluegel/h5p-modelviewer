@@ -1,10 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Dialog from './Dialog/Dialog';
 import InteractionContent from './Dialog/InteractionContent';
 import './Main.scss';
 import ModelViewer from './ModelViewer/ModelViewer';
 import ToolBar from './Toolbar/Toolbar';
-import PropTypes from 'prop-types';
 
 export default class Main extends React.Component {
   constructor(props) {
