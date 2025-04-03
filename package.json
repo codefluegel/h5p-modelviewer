@@ -28,7 +28,7 @@
     "@types/react-dom": "^19.1.1",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
-    "eslint": "^9.23.0",
+    "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
     "eslint-plugin-react": "^7.37.4",
     "globals": "^16.0.0",
     "mini-css-extract-plugin": "^2.9.2",
@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@google/model-viewer": "^4.0.0",
-    "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
     "he": "^1.2.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
