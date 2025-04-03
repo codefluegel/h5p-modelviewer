@@ -1,18 +1,17 @@
-@use "../../styles/icons" as *;
-@use "../../styles/colors" as *;
+@use "../../styles/colors.scss";
 
 .toolbar-btn {
-  background: $color-primary;
+  background: colors.$color-primary;
   background-image: linear-gradient(
-    $color-primary,
+    colors.$color-primary,
     50%,
     transparent 50%,
     transparent
   );
-  border-color: $color-primary;
+  border-color: colors.$color-primary;
   text-transform: uppercase;
   border-radius: 0.25em;
-  border: 1px solid $color-disabled;
+  border: 1px solid colors.$color-disabled;
   font-size: 1em;
   font-family: "Open Sans", sans-serif;
   display: inline-block;
@@ -20,19 +19,19 @@
   margin: 10px 0 0 0;
   padding: 5px 20px;
   box-sizing: border-box;
-  color: $color-background;
+  color: colors.$color-background;
   cursor: pointer;
   font-weight: 600;
 
   &:disabled {
-    background: $color-disabled;
+    background: colors.$color-disabled;
     background-image: linear-gradient(
-      $color-disabled 50%,
+      colors.$color-disabled 50%,
       transparent 50%,
       transparent
     );
-    border-color: $color-disabled;
-    color: $color-background;
+    border-color: colors.$color-disabled;
+    color: colors.$color-background;
     cursor: not-allowed;
   }
 }

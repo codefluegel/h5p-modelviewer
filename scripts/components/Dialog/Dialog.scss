@@ -1,4 +1,4 @@
-@use "../../styles/icons";
+@use "../../styles/icons.scss";
 
 // Define variables for commonly used values
 $dialog-padding: 2em;
@@ -15,9 +15,9 @@ $scrollbar-thumb-color: #ddd;
 $scrollbar-thumb-hover-color: #aaa;
 $scrollbar-thumb-active-color: #888;
 
-$dialog-width: 80vw; 
-$dialog-max-width: 50rem; 
-$dialog-max-height: 45rem; 
+$dialog-width: 80vw;
+$dialog-max-width: 50rem;
+$dialog-max-height: 45rem;
 
 .h5p-text-dialog {
   position: absolute;
@@ -34,8 +34,8 @@ $dialog-max-height: 45rem;
   box-sizing: border-box;
 
   .nav-button-wrapper {
-    top: -$dialog-padding / 2;
-    right: -$dialog-padding / 2;
+    top: calc(-1 * $dialog-padding / 2);
+    right: calc(-1 * $dialog-padding / 2);
     left: auto;
     box-shadow: $dialog-box-shadow;
     border: $dialog-close-button-border;
@@ -62,8 +62,8 @@ $dialog-max-height: 45rem;
     height: $dialog-close-button-size;
     padding: 0;
 
-    top: -$dialog-padding / 2;
-    right: -$dialog-padding / 2;
+    top: calc(-1 * $dialog-padding / 2);
+    right: calc(-1 * $dialog-padding / 2);
 
     box-shadow: $dialog-box-shadow;
     border: $dialog-close-button-border;
@@ -89,7 +89,7 @@ $dialog-max-height: 45rem;
   width: 90vw; // Adjust width for medium tablet size
   max-width: $dialog-max-width;
   margin: 0;
-  padding: $dialog-padding / 2; // Reduce padding for smaller screens
+  padding: calc($dialog-padding / 2); // Reduce padding for smaller screens
 }
 
 .h5p-text-content {

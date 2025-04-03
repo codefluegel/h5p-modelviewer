@@ -1,5 +1,4 @@
-@use "../../styles/icons" as *;
-@use "../../styles/colors" as *;
+@use "../../styles/colors.scss";
 
 .modelViewer {
   width: 100%;
@@ -11,10 +10,10 @@
   height: 25px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 50%;
-  background-color: $color-primary;
+  background-color: colors.$color-primary;
   cursor: pointer;
   z-index: 1;
-  color: $color-background;
+  color: colors.$color-background;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,20 +41,20 @@
 .hotspot-label {
   position: absolute;
   left: 30px;
-  background-color: $color-background;
+  background-color: colors.$color-background;
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
-  font-size: 1em; 
-  color: $color-text; 
+  font-size: 1em;
+  color: colors.$color-text;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
-  margin-top: 4px; 
-  
+  margin-top: 4px;
+
   @media (max-width: 768px) {
     display: none;
   }
