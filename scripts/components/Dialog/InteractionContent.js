@@ -63,6 +63,7 @@ export default class InteractionContent extends React.Component {
 
     if (library.library.includes('H5P.Audio')) {
       library.params.playerMode = 'full';
+      library.params.fitToWrapper = true;
     }
 
     this.instance = H5P.newRunnable(library, this.context.contentId, H5P.jQuery(contentRef));
@@ -70,6 +71,13 @@ export default class InteractionContent extends React.Component {
     this.setState({
       isInitialized: true,
     });
+
+    if (this.instance?.libraryInfo.machineName === 'H5P.Audio') {
+      // See https://github.com/h5p/h5p-audio/pull/48
+      if (!!window.chrome) {
+        this.instance.audio.style.height = '54px';
+      }
+    }
 
     if (this.instance.libraryInfo.machineName === 'H5P.Image') {
       const img = contentRef.children[0];
