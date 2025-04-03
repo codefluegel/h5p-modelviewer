@@ -74,7 +74,7 @@ export default class InteractionContent extends React.Component {
 
     if (this.instance?.libraryInfo.machineName === 'H5P.Audio') {
       // See https://github.com/h5p/h5p-audio/pull/48
-      if (!!window.chrome) {
+      if (!!window.chrome && this.instance.audio) {
         this.instance.audio.style.height = '54px';
       }
     }
