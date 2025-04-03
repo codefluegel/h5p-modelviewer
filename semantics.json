@@ -129,13 +129,13 @@
       {
         "name": "play",
         "type": "text",
-        "label": "Aria label for playbtn button",
+        "label": "Aria label for play button",
         "default": "Play"
       },
       {
         "name": "pause",
         "type": "text",
-        "label": "Aria label for pausebtn button",
+        "label": "Aria label for pause button",
         "default": "Pause"
       }
     ]

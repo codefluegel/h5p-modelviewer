@@ -69,11 +69,11 @@
           "default": "Close"
         },
         {
-          "label": "Aria label for playbtn button",
+          "label": "Aria label for play button",
           "default": "Play"
         },
         {
-          "label": "Aria label for pausebtn button",
+          "label": "Aria label for pause button",
           "default": "Pause"
         }
       ]
