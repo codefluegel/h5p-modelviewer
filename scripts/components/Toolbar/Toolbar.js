@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
-import { H5PContext } from '../../context/H5PContext';
+import { H5PContext } from '../../context/H5PContext.js';
 import './Toolbar.scss';
 
 const ToolBar = (props) => {

@@ -15,6 +15,7 @@
   "author": "CodeFluegel",
   "license": "MIT",
   "homepage": "https://github.com/codefluegel/h5p-modelviewer#readme",
+  "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.24.7",
     "@babel/core": "^7.24.7",

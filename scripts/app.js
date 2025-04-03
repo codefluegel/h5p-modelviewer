@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Main from './components/Main';
-import { H5PContext } from './context/H5PContext';
-import { sanitizeContentTypeParameters } from './utils/sanitization';
+import Main from './components/Main.js';
+import { H5PContext } from './context/H5PContext.js';
+import { sanitizeContentTypeParameters } from './utils/sanitization.js';
 
 export default class Wrapper extends H5P.EventDispatcher {
   constructor(params, contentId, extras = {}) {

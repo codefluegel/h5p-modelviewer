@@ -5,7 +5,7 @@ export default [
   eslintConfigSnordianH5P.configs['flat/recommended'],
   {
     name: 'react-config',
-    ignores: ['dist/**/*', 'webpack.config.js'],
+    ignores: ['dist/**/*'],
     plugins: {
       react: pluginReact,
     },
