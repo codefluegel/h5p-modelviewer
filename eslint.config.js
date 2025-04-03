@@ -13,6 +13,11 @@ export default [
       'react/prop-types': 'warn', // If you want to add prop types
       // Other rules that you want to set
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     languageOptions: {
       parserOptions: {
         ecmaFeatures: {

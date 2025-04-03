@@ -21,6 +21,7 @@ export default class Wrapper extends H5P.EventDispatcher {
         <Main
           initialModelPath={path}
           paramInteractions={this.params.modelViewerWidget.interactions}
+          modelDescriptionARIA={this.params.modelDescriptionARIA}
         />
       </H5PContext.Provider>
     );

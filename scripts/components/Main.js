@@ -11,7 +11,6 @@ export default class Main extends React.Component {
     super(props);
 
     const modelViewerId = `model-viewer-${H5P.createUUID()}`;
-
     this.state = {
       modelPath: this.props.initialModelPath,
       modelViewerInstance: null,
@@ -19,6 +18,7 @@ export default class Main extends React.Component {
       animations: [],
       interactions: this.props.paramInteractions,
       showInteractionDialog: false,
+      modelDescriptionARIA: this.props.modelDescriptionARIA,
     };
 
     this.handleLoad = this.handleLoad.bind(this);
@@ -100,6 +100,7 @@ export default class Main extends React.Component {
               hotspots={this.state.interactions}
               modelPath={this.state.modelPath}
               showContentModal={this.showContentModal.bind(this)}
+              modelDescriptionARIA={this.state.modelDescriptionARIA}
             />
             <ToolBar
               animations={this.state.animations}
@@ -115,6 +116,7 @@ export default class Main extends React.Component {
 Main.propTypes = {
   modelPath: PropTypes.string,
   initialModelPath: PropTypes.string.isRequired,
+  modelDescriptionARIA: PropTypes.string.isRequired,
   paramInteractions: PropTypes.arrayOf(
     PropTypes.shape({
       interactionpos: PropTypes.string,

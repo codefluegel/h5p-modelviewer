@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { H5PContext } from '../../context/H5PContext';
 import './Dialog.scss';
 
 export default class Dialog extends React.Component {
@@ -68,7 +69,6 @@ export default class Dialog extends React.Component {
     const { title, children, dialogClasses, onHideTextDialog } = this.props;
 
     const combinedDialogClasses = ['h5p-text-dialog', ...(dialogClasses || [])];
-
     return (
       <div
         className='h5p-text-overlay'
@@ -83,7 +83,7 @@ export default class Dialog extends React.Component {
           </div>
           <div className='h5p-text-content'>{children}</div>
           <button
-            aria-label='Close'
+            aria-label={this.context.params.l10n.close}
             className='close-button-wrapper'
             onClick={onHideTextDialog}
           ></button>
@@ -92,6 +92,8 @@ export default class Dialog extends React.Component {
     );
   }
 }
+
+Dialog.contextType = H5PContext;
 
 Dialog.propTypes = {
   title: PropTypes.string.isRequired,

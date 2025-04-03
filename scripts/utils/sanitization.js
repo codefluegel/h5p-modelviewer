@@ -11,7 +11,10 @@ export const sanitizeContentTypeParameters = (params = {}) => {
       glbModel: {},
       modelViewerWidget: {
         interactions: [],
+        modelId: null,
+        modelname: '',
       },
+      modelDescriptionARIA: '',
       behaviour: {
         audioType: 'audio',
         label: {
@@ -21,15 +24,20 @@ export const sanitizeContentTypeParameters = (params = {}) => {
       },
       l10n: {
         title: 'ModelViewer',
+        close: 'Close',
+        play: 'Play',
+        pause: 'Pause',
       },
     },
     params
   );
 
-  // Sanitize localization
   for (const key in params.l10n) {
     params.l10n[key] = purifyHTML(params.l10n[key]);
   }
+
+  params.modelViewerWidget.modelname = purifyHTML(params.modelViewerWidget.modelname);
+  params.modelDescriptionARIA = purifyHTML(params.modelDescriptionARIA);
 
   return params;
 };

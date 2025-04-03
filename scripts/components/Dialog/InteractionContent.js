@@ -60,6 +60,11 @@ export default class InteractionContent extends React.Component {
     }
 
     const library = this.props.hotspot.action;
+
+    if (library.library.includes('H5P.Audio')) {
+      library.params.playerMode = 'full';
+    }
+
     this.instance = H5P.newRunnable(library, this.context.contentId, H5P.jQuery(contentRef));
 
     this.setState({
@@ -99,6 +104,9 @@ InteractionContent.propTypes = {
       metadata: PropTypes.shape({
         contentType: PropTypes.string.isRequired,
       }).isRequired,
+      params: PropTypes.shape({
+        playerMode: PropTypes.string, // Add playerMode validation
+      }),
     }).isRequired,
   }).isRequired,
   onResize: PropTypes.func.isRequired,

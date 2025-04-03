@@ -1,10 +1,11 @@
 import '@google/model-viewer';
+import he from 'he';
 import PropTypes from 'prop-types';
 import React from 'react';
 import './ModelViewer.scss';
 
 const ModelViewer = (props) => {
-  const { handleClick, hotspots, modelPath, id, showContentModal } = props;
+  const { handleClick, hotspots, modelPath, id, showContentModal, modelDescriptionARIA } = props;
 
   const openModalByType = (hotspot, index) => {
     showContentModal(hotspot, index);
@@ -21,12 +22,12 @@ const ModelViewer = (props) => {
     <model-viewer
       id={id}
       onClick={handleClick}
-      style={{ width: '100%', height: '100%' }}
+      class='modelViewer'
       src={modelPath}
       auto-rotate
       ar
       ar-scale='fixed'
-      alt={modelPath.split('/').pop().split('.').slice(0, -1).join('.')}
+      alt={modelDescriptionARIA}
       camera-controls
     >
       {hotspots &&
@@ -34,26 +35,20 @@ const ModelViewer = (props) => {
           return (
             hotspot.interactionpos && (
               <div
-                className={`hotspot h5p_${hotspot.action.metadata.contentType
-                  .replace(/[ ,]+/g, '_')
-                  .toLowerCase()}`}
+                className='hotspot'
                 key={index}
                 slot={`hotspot-${index}`}
                 data-surface={hotspot.interactionpos}
-                role='button'
-                tabIndex={0}
-                onClick={() => openModalByType(hotspot, index)}
-                onKeyDown={(event) => handleKeyDown(event, hotspot, index)}
               >
-                <span
-                  className='hotspot-label'
+                <button
+                  className={`hotspot h5p_${hotspot.action.metadata.contentType
+                    .replace(/[ ,]+/g, '_')
+                    .toLowerCase()}`}
+                  aria-label={he.decode(hotspot.labelText)}
                   onClick={() => openModalByType(hotspot, index)}
                   onKeyDown={(event) => handleKeyDown(event, hotspot, index)}
-                  role='button'
-                  tabIndex={0}
-                >
-                  {`${hotspot.labelText}`}
-                </span>
+                />
+                <div className='hotspot-label'>{he.decode(hotspot.labelText)}</div>
               </div>
             )
           );
@@ -80,4 +75,5 @@ ModelViewer.propTypes = {
   modelPath: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   showContentModal: PropTypes.func.isRequired,
+  modelDescriptionARIA: PropTypes.string.isRequired,
 };
