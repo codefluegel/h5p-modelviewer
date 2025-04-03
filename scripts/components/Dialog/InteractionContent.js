@@ -114,6 +114,7 @@ InteractionContent.propTypes = {
       }).isRequired,
       params: PropTypes.shape({
         playerMode: PropTypes.string, // Add playerMode validation
+        fitToWrapper: PropTypes.bool,
       }),
     }).isRequired,
   }).isRequired,
