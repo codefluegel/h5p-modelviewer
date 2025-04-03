@@ -1,7 +1,7 @@
 import '@google/model-viewer';
-import he from 'he';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { purifyHTML } from './../../utils/utils.js';
 import './ModelViewer.scss';
 
 const ModelViewer = (props) => {
@@ -44,11 +44,11 @@ const ModelViewer = (props) => {
                   className={`hotspot h5p_${hotspot.action.metadata.contentType
                     .replace(/[ ,]+/g, '_')
                     .toLowerCase()}`}
-                  aria-label={he.decode(hotspot.labelText)}
+                  aria-label={purifyHTML(hotspot.labelText)}
                   onClick={() => openModalByType(hotspot, index)}
                   onKeyDown={(event) => handleKeyDown(event, hotspot, index)}
                 />
-                <div className='hotspot-label'>{he.decode(hotspot.labelText)}</div>
+                <div className='hotspot-label'>{purifyHTML(hotspot.labelText)}</div>
               </div>
             )
           );
