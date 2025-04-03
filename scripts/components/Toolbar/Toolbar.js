@@ -42,11 +42,11 @@ const ToolBar = (props) => {
 export default ToolBar;
 
 ToolBar.propTypes = {
-  animations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  animations: PropTypes.arrayOf(PropTypes.string).isRequired,
   modelViewerInstance: PropTypes.shape({
-    availableAnimations: PropTypes.arrayOf(PropTypes.object).isRequired,
+    availableAnimations: PropTypes.arrayOf(PropTypes.string).isRequired,
     paused: PropTypes.bool.isRequired,
     play: PropTypes.func.isRequired,
     pause: PropTypes.func.isRequired,
-  }).isRequired,
+  }),
 };
