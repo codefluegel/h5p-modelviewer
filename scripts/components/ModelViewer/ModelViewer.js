@@ -1,8 +1,8 @@
+import '@components/ModelViewer/ModelViewer.scss';
 import '@google/model-viewer';
+import { purifyHTML } from '@utils/utils.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { purifyHTML } from './../../utils/utils.js';
-import './ModelViewer.scss';
 
 const ModelViewer = (props) => {
   const { handleClick, hotspots, modelPath, id, showContentModal, modelDescriptionARIA } = props;

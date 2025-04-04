@@ -1,7 +1,7 @@
+import '@components/Dialog/Dialog.scss';
+import { H5PContext } from '@context/H5PContext.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { H5PContext } from '../../context/H5PContext.js';
-import './Dialog.scss';
 
 export default class Dialog extends React.Component {
   constructor(props) {

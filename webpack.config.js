@@ -1,6 +1,6 @@
-import { dirname, resolve as _resolve, join } from 'path';
-import { fileURLToPath } from 'url';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { resolve as _resolve, dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,6 +12,15 @@ export default {
   mode: mode,
   entry: {
     dist: './entries/dist.js',
+  },
+  resolve: {
+    alias: {
+      '@components': _resolve(__dirname, 'scripts/components'),
+      '@utils': _resolve(__dirname, 'scripts/utils'),
+      '@context': _resolve(__dirname, 'scripts/context'),
+      '@styles': _resolve(__dirname, 'scripts/styles'),
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx'], // if using TS
   },
   output: {
     path: _resolve(__dirname, 'dist'),
@@ -29,7 +38,7 @@ export default {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.(s[ac]ss|css)$/,

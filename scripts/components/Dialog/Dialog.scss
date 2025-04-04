@@ -1,4 +1,4 @@
-@use "../../styles/icons.scss";
+@use "@styles/icons.scss";
 
 // Define variables for commonly used values
 $dialog-padding: 2em;
@@ -8,6 +8,7 @@ $dialog-border-radius: 50%;
 $dialog-box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
 $dialog-transition: background 0.5s linear;
 $dialog-close-button-size: 2em;
+$dialog-close-button-border-mobile-width: 4px; 
 $dialog-close-button-border: 8px solid #fff;
 $dialog-overlay-background: rgba(0, 0, 0, 0.7);
 $scrollbar-width: 0.5em;
@@ -82,7 +83,16 @@ $dialog-max-height: 45rem;
       content: icons.$close;
       vertical-align: text-bottom;
     }
+    @media (max-width: 768px) {
+      font-size: 0.5em;
+      border: $dialog-close-button-border-mobile-width solid #fff; 
+      top: 0;
+      right: 0;
+      width: calc($dialog-close-button-size / 2);
+      height: calc($dialog-close-button-size / 2);
+    }
   }
+
 }
 
 .h5p-medium-tablet-size .h5p-text-dialog {

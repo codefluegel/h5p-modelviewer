@@ -1,10 +1,10 @@
+import Dialog from '@components/Dialog/Dialog.js';
+import InteractionContent from '@components/Dialog/InteractionContent.js';
+import '@components/Main.scss';
+import ModelViewer from '@components/ModelViewer/ModelViewer.js';
+import ToolBar from '@components/Toolbar/Toolbar.js';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Dialog from './Dialog/Dialog.js';
-import InteractionContent from './Dialog/InteractionContent.js';
-import './Main.scss';
-import ModelViewer from './ModelViewer/ModelViewer.js';
-import ToolBar from './Toolbar/Toolbar.js';
 
 export default class Main extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
+import '@components/Toolbar/Toolbar.scss';
+import { H5PContext } from '@context/H5PContext.js';
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
-import { H5PContext } from '../../context/H5PContext.js';
-import './Toolbar.scss';
 
 const ToolBar = (props) => {
   const { animations, modelViewerInstance } = props;
@@ -24,17 +24,15 @@ const ToolBar = (props) => {
 
   return (
     <div className='tool-bar'>
-      <div>
-        {animations.length > 0 && (
-          <button
-            className='toolbar-btn'
-            aria-label={buttonState ? pauseLabel : playLabel}
-            onClick={handlePlayPause}
-          >
-            {buttonState ? pauseLabel : playLabel}
-          </button>
-        )}
-      </div>
+      {animations.length > 0 && (
+        <button
+          className='toolbar-btn'
+          aria-label={buttonState ? pauseLabel : playLabel}
+          onClick={handlePlayPause}
+        >
+          {buttonState ? pauseLabel : playLabel}
+        </button>
+      )}
     </div>
   );
 };

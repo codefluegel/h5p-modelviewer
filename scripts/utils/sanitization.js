@@ -1,4 +1,4 @@
-import { extend, purifyHTML } from './utils.js';
+import { extend, purifyHTML } from '@utils/utils.js';
 
 /**
  * Sanitize the content type's parameters.
