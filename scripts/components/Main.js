@@ -102,10 +102,12 @@ export default class Main extends React.Component {
               showContentModal={this.showContentModal.bind(this)}
               modelDescriptionARIA={this.state.modelDescriptionARIA}
             />
-            <ToolBar
-              animations={this.state.animations}
-              modelViewerInstance={this.state.modelViewerInstance}
-            />
+            {this.state.animations.length > 0 && !this.state.showInteractionDialog && (
+              <ToolBar
+                animations={this.state.animations}
+                modelViewerInstance={this.state.modelViewerInstance}
+              />
+            )}
           </div>
         </div>
       </div>

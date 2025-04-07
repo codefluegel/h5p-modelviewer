@@ -23,17 +23,13 @@ const ToolBar = (props) => {
   };
 
   return (
-    <div className='tool-bar'>
-      {animations.length > 0 && (
-        <button
-          className='toolbar-btn'
-          aria-label={buttonState ? pauseLabel : playLabel}
-          onClick={handlePlayPause}
-        >
-          {buttonState ? pauseLabel : playLabel}
-        </button>
-      )}
-    </div>
+    <button
+      className='toolbar-btn'
+      aria-label={buttonState ? pauseLabel : playLabel}
+      onClick={handlePlayPause}
+    >
+      {buttonState ? pauseLabel : playLabel}
+    </button>
   );
 };
 

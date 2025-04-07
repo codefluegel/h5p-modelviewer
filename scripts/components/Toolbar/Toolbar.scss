@@ -22,6 +22,8 @@
   color: colors.$color-background;
   cursor: pointer;
   font-weight: 600;
+  width: fit-content; 
+  align-self: center;
 
   &:disabled {
     background: colors.$color-disabled;
@@ -34,13 +36,8 @@
     color: colors.$color-background;
     cursor: not-allowed;
   }
-}
 
-.tool-bar {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
+  @media (max-width: 768px) {
+    font-size: 0.75em
+  }
 }
