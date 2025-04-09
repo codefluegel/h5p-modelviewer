@@ -13,18 +13,22 @@ export default class Wrapper extends H5P.EventDispatcher {
     this.extras = extras;
     this.glbModelInput = params.glbModel;
   }
+
   render() {
     this.root = this.root ?? createRoot(this.wrapper);
-    const path = H5P.getPath(this.params.glbModel.path, this.contentId);
-    this.root.render(
-      <H5PContext.Provider value={this}>
-        <Main
-          initialModelPath={path}
-          paramInteractions={this.params.modelViewerWidget.interactions}
-          modelDescriptionARIA={this.params.modelDescriptionARIA}
-        />
-      </H5PContext.Provider>
+    const modelPath = this.params.glbModel?.path;
+
+    const content = modelPath ? (
+      <Main
+        initialModelPath={H5P.getPath(modelPath, this.contentId)}
+        paramInteractions={this.params.modelViewerWidget.interactions}
+        modelDescriptionARIA={this.params.modelDescriptionARIA}
+      />
+    ) : (
+      <p>{this.params.l10n.noModel}</p>
     );
+
+    this.root.render(<H5PContext.Provider value={this}>{content}</H5PContext.Provider>);
 
     window.requestAnimationFrame(() => {
       this.trigger('resize');

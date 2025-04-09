@@ -75,6 +75,10 @@
         {
           "label": "Aria label for pause button",
           "default": "Pause"
+        },
+        {
+          "label": "No model found",
+          "default": "Please add a 3D model to the content type."
         }
       ]
     }

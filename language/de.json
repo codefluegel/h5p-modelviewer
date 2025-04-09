@@ -75,6 +75,10 @@
         {
           "label": "Aria-Beschriftung für die Pause-Schaltfläche",
           "default": "Pause"
+        },
+        {
+          "label": "Kein Modell gefunden",
+          "default": "Bitte laden Sie ein Modell im Editor hoch."
         }
       ]
     }
