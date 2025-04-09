@@ -1,0 +1,62 @@
+@use "@styles/colors.scss";
+
+.modelViewer {
+  width: 100%;
+  height: 100%;
+}
+
+.hotspot {
+  width: 25px;
+  height: 25px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  background-color: colors.$color-primary;
+  cursor: pointer;
+  z-index: 1;
+  color: colors.$color-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:none;
+}
+
+.hotspot-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  position: relative;
+}
+
+.hotspot-icon:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+.hotspot-label {
+  position: absolute;
+  left: 30px;
+  background-color: colors.$color-background;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: 1em;
+  color: colors.$color-text;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  margin-top: 4px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+

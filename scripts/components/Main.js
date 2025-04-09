@@ -1,181 +1,79 @@
-import React from 'react';
+import Dialog from '@components/Dialog/Dialog.js';
+import InteractionContent from '@components/Dialog/InteractionContent.js';
+import '@components/Main.scss';
+import ModelViewer from '@components/ModelViewer/ModelViewer.js';
+import ToolBar from '@components/Toolbar/Toolbar.js';
 import PropTypes from 'prop-types';
-import './Main.scss';
-import { H5PContext } from '../context/H5PContext';
-import ModelViewer from './ModelViewer/ModelViewer';
-import Dialog from './Dialog/Dialog';
-import InteractionContent from './Dialog/InteractionContent';
-import ToolBar from './Toolbar/Toolbar';
-import AudioButton from './HUD/Buttons/AudioButton.js';
+import React from 'react';
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
 
-    this.audioPlayers = {};
-
+    const modelViewerId = `model-viewer-${H5P.createUUID()}`;
     this.state = {
       modelPath: this.props.initialModelPath,
       modelViewerInstance: null,
+      modelViewerId,
       animations: [],
       interactions: this.props.paramInteractions,
-      showHotspotDialog: false,
       showInteractionDialog: false,
-      audioIsPlaying: null,
+      modelDescriptionARIA: this.props.modelDescriptionARIA,
     };
-  }
 
+    this.handleLoad = this.handleLoad.bind(this);
+  }
   componentDidMount() {
-    const modelViewer = document.getElementById('model-viewer');
-    if (!modelViewer) {
-      return;
-    }
+    const modelViewer = document.getElementById(this.state.modelViewerId);
+    if (!modelViewer) return;
+
     modelViewer.autoRotate = false;
 
-    modelViewer.addEventListener('load', () => {
-      // create hotspots and set model viewer instance
+    modelViewer.addEventListener('load', this.handleLoad, { once: true });
 
-      this.setState({
-        interactions: this.state.interactions,
-        modelViewerInstance: modelViewer,
-        animations: modelViewer.availableAnimations,
-      });
-    });
+    this.setState({ modelViewerInstance: modelViewer });
   }
 
   componentWillUnmount() {
-    // remove event listener
-    this.state.modelViewerInstance.removeEventListener('load');
-  }
-
-  /**
-   * Get the audio player for the current track.
-   *
-   * @param {string} id
-   * @param {Object} [hotspot] Parameters (Only needed initially)
-   * @return {AudioElement} or 'null' if track isn't playable.
-   */
-  getAudioPlayer(id, hotspot) {
-    // Create player if none exist
-    if (this.audioPlayers[id] === undefined) {
-      if (
-        !hotspot ||
-        !hotspot.action ||
-        !hotspot.action.params ||
-        !hotspot.action.params.files ||
-        !hotspot.action.params.files.length
-      ) {
-        return; // No track to play
-      }
-      this.audioPlayers[id] = AudioButton.createAudioPlayer(
-        this.context.contentId,
-        hotspot.action.params.files,
-        () => {
-          this.setState({
-            audioIsPlaying: id, // Set state on starting to play
-          });
-        },
-        () => {
-          if (this.state.audioIsPlaying === id) {
-            this.setState({
-              audioIsPlaying: null, // Clear state on playing ended
-            });
-          }
-        },
-        false
-      );
+    // Safely remove the event listener if the modelViewerInstance exists
+    if (this.state.modelViewerInstance) {
+      this.state.modelViewerInstance.removeEventListener('load', this.handleLoad);
     }
-    return this.audioPlayers[id];
   }
 
-  handleModelClick(event) {
-    // retrieve clicked point on 3D Model from model-viewer instance
-    if (this.state.editingLibrary) {
-      const clickedPoint = this.state.modelViewerInstance.surfaceFromPoint(
-        event.clientX,
-        event.clientY
-      );
+  handleLoad() {
+    const modelViewer = this.state.modelViewerInstance;
 
+    if (modelViewer) {
       this.setState({
-        showHotspotDialog: true,
+        interactions: this.state.interactions,
+        animations: modelViewer.availableAnimations,
       });
     }
   }
 
-  // handle play/pause of animations contained by the model
-  handlePlayPause() {
-    const { modelViewerInstance } = this.state;
-
-    if (modelViewerInstance.paused) {
-      modelViewerInstance.play();
-    } else {
-      modelViewerInstance.pause();
+  handleModelClick() {
+    // retrieve clicked point on 3D Model from model-viewer instance
+    if (this.state.editingLibrary) {
+      this.setState({
+        showHotspotDialog: true,
+      });
     }
-  }
-
-  handleCloseTextDialog() {
-    this.setState({
-      showHotspotDialog: false,
-      currentText: null,
-    });
   }
 
   hideInteraction() {
-    this.setState((prevState) => ({
+    this.setState({
       showInteractionDialog: false,
       hotspot: null,
-    }));
-  }
-
-  handleAudioIsPlaying(id) {
-    this.setState({
-      audioIsPlaying: id, // Change the player
     });
   }
 
-  showContentModal(hotspot, index) {
-    if (hotspot.action.metadata.contentType === 'Audio' || 'Video') {
-      const playerId = 'interaction' + '-' + index;
-      if (this.state.audioIsPlaying === playerId) {
-        // Pause and reset player
-        const lastPlayer = this.getAudioPlayer(playerId, hotspot);
-        if (lastPlayer) {
-          lastPlayer.pause();
-          lastPlayer.currentTime = 0;
-        }
-      } else {
-        // Start current audio playback
-        const player = this.getAudioPlayer(playerId, hotspot);
-        if (player) {
-          player.play();
-        }
-      }
-
-      this.setState({
-        showInteractionDialog: true,
-      });
-    } else {
-      this.setState({
-        showHotspotDialog: true,
-      });
-    }
-
+  showContentModal(hotspot) {
     this.setState({
-      hotspot: hotspot,
+      showInteractionDialog: true,
+      hotspot,
       editingLibrary: hotspot.action.library,
     });
-  }
-
-  playAnimation() {
-    const mv = this.modelViewerInstance;
-    console.log(this.modelViewerInstance);
-
-    if (mv) {
-      mv.availableAnimations.length && mv.paused ? mv.play() : mv.pause();
-      this.setState({
-        animationButtonText: mv.paused ? 'Play' : 'Pause',
-      });
-    }
   }
 
   render() {
@@ -190,31 +88,26 @@ export default class Main extends React.Component {
     return (
       <div className='model-viewer-container'>
         {this.state.showInteractionDialog && (
-          <Dialog
-            title={'Test'}
-            onHideTextDialog={this.hideInteraction.bind(this)}
-            dialogClasses={dialogClasses}
-          >
-            <InteractionContent
-              hotspot={this.state.hotspot}
-              audioIsPlaying={this.state.audioIsPlaying}
-              onAudioIsPlaying={this.handleAudioIsPlaying.bind(this)}
-            />
+          <Dialog onHideTextDialog={this.hideInteraction.bind(this)} dialogClasses={dialogClasses}>
+            <InteractionContent hotspot={this.state.hotspot} />
           </Dialog>
         )}
         <div className='container'>
           <div className='mv-container'>
             <ModelViewer
-              id={'model-viewer'}
+              id={this.state.modelViewerId}
               handleClick={this.handleModelClick.bind(this)}
               hotspots={this.state.interactions}
               modelPath={this.state.modelPath}
               showContentModal={this.showContentModal.bind(this)}
+              modelDescriptionARIA={this.state.modelDescriptionARIA}
             />
-            <ToolBar
-              animations={this.state.animations}
-              modelViewerInstance={this.state.modelViewerInstance}
-            />
+            {this.state.animations.length > 0 && !this.state.showInteractionDialog && (
+              <ToolBar
+                animations={this.state.animations}
+                modelViewerInstance={this.state.modelViewerInstance}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -222,8 +115,20 @@ export default class Main extends React.Component {
   }
 }
 
-Main.contextType = H5PContext;
-
 Main.propTypes = {
   modelPath: PropTypes.string,
+  initialModelPath: PropTypes.string.isRequired,
+  modelDescriptionARIA: PropTypes.string.isRequired,
+  paramInteractions: PropTypes.arrayOf(
+    PropTypes.shape({
+      interactionpos: PropTypes.string,
+      action: PropTypes.shape({
+        library: PropTypes.string.isRequired,
+        metadata: PropTypes.shape({
+          contentType: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+      labelText: PropTypes.string,
+    })
+  ),
 };

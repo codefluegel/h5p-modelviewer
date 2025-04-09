@@ -1,4 +1,4 @@
-import { extend, purifyHTML } from './utils.js';
+import { extend, purifyHTML } from '@utils/utils.js';
 
 /**
  * Sanitize the content type's parameters.
@@ -11,7 +11,10 @@ export const sanitizeContentTypeParameters = (params = {}) => {
       glbModel: {},
       modelViewerWidget: {
         interactions: [],
+        modelId: null,
+        modelname: '',
       },
+      modelDescriptionARIA: '',
       behaviour: {
         audioType: 'audio',
         label: {
@@ -21,34 +24,20 @@ export const sanitizeContentTypeParameters = (params = {}) => {
       },
       l10n: {
         title: 'ModelViewer',
-        playAudioTrack: 'Play Audio Track',
-        pauseAudioTrack: 'Pause Audio Track',
-        sceneDescription: 'Scene Description',
-        resetCamera: 'Reset Camera',
-        submitDialog: 'Submit Dialog',
-        closeDialog: 'Close Dialog',
-        expandButtonAriaLabel: 'Expand the visual label',
-        unlockedStateAction: 'Continue',
-        backgroundLoading: 'Loading background image...',
-        noContent: 'No content',
-        hint: 'Hint',
-        lockedContent: 'Locked content',
-        back: 'Back',
-        buttonFullscreenEnter: 'Enter fullscreen mode',
-        buttonFullscreenExit: 'Exit fullscreen mode',
-        buttonZoomIn: 'Zoom in',
-        buttonZoomOut: 'Zoom out',
-        zoomToolbar: 'Zoom toolbar',
-        zoomAria: ':num% zoomed in',
+        close: 'Close',
+        play: 'Play',
+        pause: 'Pause',
       },
     },
     params
   );
 
-  // Sanitize localization
   for (const key in params.l10n) {
     params.l10n[key] = purifyHTML(params.l10n[key]);
   }
+
+  params.modelViewerWidget.modelname = purifyHTML(params.modelViewerWidget.modelname);
+  params.modelDescriptionARIA = purifyHTML(params.modelDescriptionARIA);
 
   return params;
 };

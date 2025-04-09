@@ -1,197 +1,80 @@
-@import "../styles/icons.scss";
+@use "@styles/icons" as *;
+@use "@styles/colors" as *;
 
+.model-viewer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
 
-.model-viewer-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    padding: 5px;
-  }
-  
-  .container{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .mv-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    aspect-ratio: 16/9;
-  }
-  
-  
-  .hotspot{
-    width: 25px;
-    height: 25px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    background-color: #475ec4;
-    outline: 1px solid #000;
-    cursor: pointer;
-    z-index: 1;
-    color: white;
+.container {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .hotspot-label {
-    position: absolute;
-    left: 30px;
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    font-size: 12px;
-    color: #000;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
-    cursor: pointer;
-  }
-  
-  .tool-bar {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-  }
-  
-  .button {
-    background: #2579C6;
-    background-image: linear-gradient(#3080c9 50%, transparent 50%, transparent);
-    border-color: #1f67a8;
-    text-transform: uppercase; 
-    border-radius: .25em;    border: 1px solid #d0d0d1;
-    font-size: 16px;
-    font-family: "Open Sans", sans-serif;    display: inline-block;
-    // font-family: "H5PFontIcons";    
-    width: auto;
-    margin: 10px 0 0 0;
-    padding: 5px 20px;
-    box-sizing: border-box;    
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-  
-    // on disabled
-    &:disabled {
-      background: #d0d0d1;
-      background-image: linear-gradient(#d0d0d1 50%, transparent 50%, transparent);
-      border-color: #d0d0d1;
-      color: #fff;
-      cursor: not-allowed;
-    }
-  }
-  
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.mv-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
 
-  
-  .h5p_text:before {
-    content: 'T';
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_text:before,
+.h5p_advancedtext:before {
+  content: "T";
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_advancedtext:before {
-    content: 'T';
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_image:before {
+  content: $image;
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_image:before {
-    content: $image;
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_audio:before {
+  content: $audio;
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_audio:before {
-    content: $audio;
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_video:before {
+  content: $video;
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_video:before {
-    content: $video;
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_questionnaire:before {
+  content: $questionnaire;
+  font-family: "H5PFontAwesome4";
+  margin-top: 2px;
+}
 
-  .h5p_questionnaire:before {
-    content: $questionnaire;
-    font-family: 'H5PFontAwesome4';
-    margin-top:2px;
-  }
+.h5p_question_set:before {
+  content: $question_set;
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_question_set:before {
-    content: $question_set;
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_file_for_download:before {
+  content: $fileForDownload;
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_file_for_download:before {
-    content: $fileForDownload;
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_go_to_scene:before {
+  content: $goToScene;
+  font-family: "H5PFontAwesome4";
+}
 
-  .h5p_go_to_scene:before {
-    content: $goToScene;
-    font-family: 'H5PFontAwesome4';
-  }
+.h5p_imageslider:before,
+.h5p_singlechoiceset:before,
+.h5p_summary:before {
+  font-family: "H5PFontIcons";
+  content: $summary;
+}
 
-  .h5p_imageslider:before,
-  .h5p_singlechoiceset:before,
-  .h5p_summary:before {
-    font-family: "H5PFontIcons";
-    content: $summary;
-  }
+.h5p_singlechoiceset:before {
+  content: $singleChoiceSet;
+}
 
-  .h5p_singlechoiceset:before {
-    content: $singleChoiceSet;
-  }
-
-  .h5p_imageslider:before {
-    content: $imageSlider;
-  }
+.h5p_imageslider:before {
+  content: $imageSlider;
+}

@@ -52,6 +52,31 @@
           "description": "Used to identify the model"
         }
       ]
+    },
+    {
+      "label": "Model description (for screen readers)",
+      "description": "A text that can describe the model for the end-user. "
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Aria label for content type",
+          "default": "Model Viewer"
+        },
+        {
+          "label": "Aria label for close button",
+          "default": "Close"
+        },
+        {
+          "label": "Aria label for play button",
+          "default": "Play"
+        },
+        {
+          "label": "Aria label for pause button",
+          "default": "Pause"
+        }
+      ]
     }
   ]
 }

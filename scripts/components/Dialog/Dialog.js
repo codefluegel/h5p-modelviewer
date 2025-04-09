@@ -1,64 +1,92 @@
+import '@components/Dialog/Dialog.scss';
+import { H5PContext } from '@context/H5PContext.js';
+import PropTypes from 'prop-types';
 import React from 'react';
-import './Dialog.scss';
-import { H5PContext } from '../../context/H5PContext';
 
 export default class Dialog extends React.Component {
   constructor(props) {
     super(props);
+    this.dialogRef = React.createRef();
+    this.focusableElements = [];
+    this.lastFocusedElement = null;
+
+    // Bind methods to the class instance
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.trapFocus = this.trapFocus.bind(this);
+    this.focusFirstElement = this.focusFirstElement.bind(this);
   }
 
   componentDidMount() {
-    // Focus must be set to the first focusable element
-    this.title.focus();
+    this.lastFocusedElement = document.activeElement;
+
+    this.focusFirstElement();
+
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
-  handleDialogRef(el) {
-    if (el) {
-      this.el = el;
+  componentWillUnmount() {
+    if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
+    }
+
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown(event) {
+    if (event.key === 'Escape') {
+      this.props.onHideTextDialog();
+    }
+    else if (event.key === 'Tab') {
+      this.trapFocus(event);
     }
   }
 
-  handleResize(isNarrow) {
-    if (this.el) {
-      // Reset to allow size growth
-      this.el.style.width = '';
-      this.el.style.height = '';
-      this.el.style.height = this.el.getBoundingClientRect().height + 'px';
-      //if (isNarrow) {
-      // This make IE11 not show the image. It seems to be the combination of
-      // flexbox and width:auto that is causing this
-      // Shrink dialog width for narrow images
-      // this.el.style.width = 'auto';
-      //}
+  trapFocus(event) {
+    const firstElement = this.focusableElements[0];
+    const lastElement = this.focusableElements[this.focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    }
+    else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  }
+
+  focusFirstElement() {
+    const focusableSelectors =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    this.focusableElements = this.dialogRef.current.querySelectorAll(focusableSelectors);
+
+    if (this.focusableElements.length > 0) {
+      this.focusableElements[0].focus();
     }
   }
 
   render() {
-    let dialogClasses = ['h5p-text-dialog'];
-    if (this.props.dialogClasses) {
-      dialogClasses = dialogClasses.concat(this.props.dialogClasses);
-    }
+    const { title, children, dialogClasses, onHideTextDialog } = this.props;
 
-    const children =
-      this.props.children.type === 'div'
-        ? this.props.children
-        : React.Children.map(this.props.children, (child) =>
-            React.cloneElement(child, {
-              onResize: this.handleResize,
-            })
-          );
-
+    const combinedDialogClasses = ['h5p-text-dialog', ...(dialogClasses || [])];
     return (
-      <div className='h5p-text-overlay' role='dialog' aria-label={this.props.title}>
-        <div ref={(el) => (this.title = el)} className='h5p-dialog-focusstart' tabIndex='-1'></div>
-        <div className={dialogClasses.join(' ')} ref={this.handleDialogRef.bind(this)}>
+      <div
+        className='h5p-text-overlay'
+        role='dialog'
+        aria-labelledby='dialog-title'
+        aria-modal='true'
+        ref={this.dialogRef}
+      >
+        <div className={combinedDialogClasses.join(' ')}>
+          <div id='dialog-title' className='h5p-dialog-title'>
+            {title}
+          </div>
           <div className='h5p-text-content'>{children}</div>
           <button
-            ref={(el) => (this.closeButton = el)}
-            aria-label={'Close'}
+            aria-label={this.context.params.l10n.close}
             className='close-button-wrapper'
-            onClick={this.props.onHideTextDialog}
-          />
+            onClick={onHideTextDialog}
+          ></button>
         </div>
       </div>
     );
@@ -66,3 +94,14 @@ export default class Dialog extends React.Component {
 }
 
 Dialog.contextType = H5PContext;
+
+Dialog.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  dialogClasses: PropTypes.arrayOf(PropTypes.string),
+  onHideTextDialog: PropTypes.func.isRequired,
+};
+
+Dialog.defaultProps = {
+  dialogClasses: [],
+};

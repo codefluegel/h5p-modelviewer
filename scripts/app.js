@@ -1,10 +1,8 @@
+import Main from '@components/Main.js';
+import { H5PContext } from '@context/H5PContext.js';
+import { sanitizeContentTypeParameters } from '@utils/sanitization.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-
-import ReactDOM from 'react-dom';
-import Main from './components/Main';
-import { H5PContext } from './context/H5PContext';
-import { sanitizeContentTypeParameters } from './utils/sanitization';
 
 export default class Wrapper extends H5P.EventDispatcher {
   constructor(params, contentId, extras = {}) {
@@ -23,6 +21,7 @@ export default class Wrapper extends H5P.EventDispatcher {
         <Main
           initialModelPath={path}
           paramInteractions={this.params.modelViewerWidget.interactions}
+          modelDescriptionARIA={this.params.modelDescriptionARIA}
         />
       </H5PContext.Provider>
     );
@@ -37,7 +36,7 @@ export default class Wrapper extends H5P.EventDispatcher {
 
     const createElements = () => {
       this.wrapper = document.createElement('div');
-      this.wrapper.classList.add('h5p-three-image');
+      this.wrapper.classList.add('h5p-editor-modelviewer');
 
       this.render();
 
@@ -52,7 +51,7 @@ export default class Wrapper extends H5P.EventDispatcher {
 
     // Append elements to DOM
     $container[0].appendChild(this.wrapper);
-    $container[0].classList.add('h5p-three-image');
+    $container[0].classList.add('h5p-modelviewer');
   }
 
   getRect() {
@@ -77,7 +76,8 @@ export default class Wrapper extends H5P.EventDispatcher {
     const wrapperSize = this.wrapper.getBoundingClientRect();
     if (wrapperSize.width < mobileThreshold) {
       this.wrapper.classList.add('mobile');
-    } else {
+    }
+    else {
       this.wrapper.classList.remove('mobile');
     }
   }

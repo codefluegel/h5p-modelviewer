@@ -1,53 +1,51 @@
-# H5P Model Viewer
+# H5P Model Viewer Integration
 
-## Getting started
+## Overview
+This module integrates Google's [Model Viewer](https://modelviewer.dev/) into H5P, allowing interactive 3D models to be displayed within H5P content types. It enables users to load, interact with, and animate 3D models directly in their H5P projects.
 
-Clone this repository with git and check out the branch that you are interested
-in (or choose the branch first and then download the archive, but learning
-how to use git really makes sense).
+## Features
+- Load 3D models in `.glb` and `.gltf` formats.
+- Interactive camera controls (zoom, rotate, pan).
+- Support for animations and hotspot interactions.
+- Customizable toolbar for additional controls.
 
-Change to the repository directory and run
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone <repository-url>
+   ```
+2. Navigate into the project directory:
+   ```sh
+   cd h5p-model-viewer
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Build the project:
+   ```sh
+   npm run build
+   ```
 
-```bash
-npm install
+## Usage
+1. Add the `Model Viewer` module to your H5P library.
+2. Configure the module by specifying the 3D model path.
+3. Customize interactions and animations within the H5P editor.
+
+## Development
+To run the project in development mode:
+```sh
+npm run dev
 ```
 
-to install required modules. Afterwards, you can build the project using
+## Dependencies
+- [Model Viewer](https://modelviewer.dev/)
+- React
+- H5P Core
 
-```bash
-npm run build
-```
+## Contributing
+Feel free to open issues or submit pull requests to improve this module.
 
-or, if you want to let everything be built continuously while you are making
-changes to the code, run
+## License
+This project is licensed under the MIT License.
 
-```bash
-npm run watch
-```
-
-Before putting the code in production, you should always run `npm run build`.
-
-Also, you should run
-
-```bash
-npm run lint
-```
-
-in order to check for coding style guide violations.
-
-In order to pack an H5P library, please install the
-[H5P CLI tool](https://h5p.org/h5p-cli-guide) instead of zipping everything
-manually. That tool will take care of a couple of things automatically that you
-will need to know otherwise.
-
-In simple cases, something such as
-
-```bash
-h5p pack <your-repository-directory> my-awesome-library.h5p
-```
-
-will suffice.
-
-For more information on how to use H5P, please have a look at
-https://youtu.be/xEgBJaRUBGg and the H5P developer guide at
-https://h5p.org/library-development.

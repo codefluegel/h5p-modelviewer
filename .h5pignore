@@ -21,3 +21,6 @@ package.json
 package-lock.json
 worknotes
 LICENSE
+scripts
+entries
+eslint.config.js

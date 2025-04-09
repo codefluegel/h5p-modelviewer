@@ -1,16 +1,29 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { resolve as _resolve, dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const mode = process.argv.includes('--mode=production') ? 'production' : 'development';
 const libraryName = process.env.npm_package_name;
 
-module.exports = {
+export default {
   mode: mode,
   entry: {
     dist: './entries/dist.js',
   },
+  resolve: {
+    alias: {
+      '@components': _resolve(__dirname, 'scripts/components'),
+      '@utils': _resolve(__dirname, 'scripts/utils'),
+      '@context': _resolve(__dirname, 'scripts/context'),
+      '@styles': _resolve(__dirname, 'scripts/styles'),
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx'], // if using TS
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: _resolve(__dirname, 'dist'),
     filename: `${libraryName}.js`,
     clean: true,
   },
@@ -24,15 +37,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'scripts'),
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        loader: 'babel-loader',
       },
       {
         test: /\.(s[ac]ss|css)$/,
-        include: path.resolve(__dirname, 'scripts'),
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -46,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg|gif)$/,
-        include: [path.resolve(__dirname, 'scripts'), path.resolve(__dirname, 'assets')],
+        include: join(__dirname, 'src/images'),
         type: 'asset/resource',
       },
     ],
