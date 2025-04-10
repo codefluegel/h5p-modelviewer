@@ -95,6 +95,10 @@
         "type": "text",
         "label": "Model Title",
         "description": "Used to identify the model"
+      },
+      {
+        "name": "exposureValue",
+        "type": "number"
       }
     ],
     "optional": true

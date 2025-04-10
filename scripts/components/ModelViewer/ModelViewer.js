@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const ModelViewer = (props) => {
-  const { handleClick, hotspots, modelPath, id, showContentModal, modelDescriptionARIA } = props;
+  const {
+    handleClick,
+    hotspots,
+    modelPath,
+    id,
+    showContentModal,
+    modelDescriptionARIA,
+    exposureValue,
+  } = props;
 
   const openModalByType = (hotspot, index) => {
     showContentModal(hotspot, index);
@@ -26,6 +34,7 @@ const ModelViewer = (props) => {
       src={modelPath}
       auto-rotate
       ar
+      exposure={exposureValue ?? '1.0'}
       ar-scale='fixed'
       alt={modelDescriptionARIA}
       camera-controls
@@ -76,4 +85,5 @@ ModelViewer.propTypes = {
   id: PropTypes.string.isRequired,
   showContentModal: PropTypes.func.isRequired,
   modelDescriptionARIA: PropTypes.string.isRequired,
+  exposureValue: PropTypes.number.isRequired,
 };

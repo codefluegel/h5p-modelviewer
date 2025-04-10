@@ -23,6 +23,7 @@ export default class Wrapper extends H5P.EventDispatcher {
         initialModelPath={H5P.getPath(modelPath, this.contentId)}
         paramInteractions={this.params.modelViewerWidget.interactions}
         modelDescriptionARIA={this.params.modelDescriptionARIA}
+        exposureValue={this.params.modelViewerWidget.exposureValue}
       />
     ) : (
       <p>{this.params.l10n.noModel}</p>
@@ -80,7 +81,7 @@ export default class Wrapper extends H5P.EventDispatcher {
     const wrapperSize = this.wrapper.getBoundingClientRect();
     if (wrapperSize.width < mobileThreshold) {
       this.wrapper.classList.add('mobile');
-    }
+    } 
     else {
       this.wrapper.classList.remove('mobile');
     }
