@@ -95,6 +95,10 @@
         "type": "text",
         "label": "Model Title",
         "description": "Used to identify the model"
+      },
+      {
+        "name": "exposureValue",
+        "type": "number"
       }
     ],
     "optional": true
@@ -137,6 +141,12 @@
         "type": "text",
         "label": "Aria label for pause button",
         "default": "Pause"
+      },
+      {
+        "name": "noModel",
+        "type": "text",
+        "label": "No model found",
+        "default": "Please add a 3D model to the content type."
       }
     ]
   }

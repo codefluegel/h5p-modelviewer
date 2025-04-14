@@ -101,6 +101,7 @@ export default class Main extends React.Component {
               modelPath={this.state.modelPath}
               showContentModal={this.showContentModal.bind(this)}
               modelDescriptionARIA={this.state.modelDescriptionARIA}
+              exposureValue={this.props.exposureValue}
             />
             {this.state.animations.length > 0 && !this.state.showInteractionDialog && (
               <ToolBar
@@ -119,6 +120,7 @@ Main.propTypes = {
   modelPath: PropTypes.string,
   initialModelPath: PropTypes.string.isRequired,
   modelDescriptionARIA: PropTypes.string.isRequired,
+  exposureValue: PropTypes.number.isRequired,
   paramInteractions: PropTypes.arrayOf(
     PropTypes.shape({
       interactionpos: PropTypes.string,
