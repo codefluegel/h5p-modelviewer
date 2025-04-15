@@ -1,8 +1,7 @@
 import '@components/ModelViewer/ModelViewer.scss';
-import '@google/model-viewer';
 import { purifyHTML } from '@utils/utils.js';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ModelViewer = (props) => {
   const {
@@ -18,6 +17,16 @@ const ModelViewer = (props) => {
   const openModalByType = (hotspot, index) => {
     showContentModal(hotspot, index);
   };
+
+  useEffect(() => {
+    if (!window.modelViewerLoaded) {
+      if (!customElements.get('model-viewer')) {
+        import('@google/model-viewer').then(() => {
+          window.modelViewerLoaded = true;
+        });
+      }
+    }
+  }, []);
 
   const handleKeyDown = (event, hotspot, index) => {
     if (event.key === 'Enter' || event.key === ' ') {
