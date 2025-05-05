@@ -3,7 +3,7 @@
   "description": "Explore an interactive world in 3D.",
   "majorVersion": 1,
   "minorVersion": 7,
-  "patchVersion": 5,
+  "patchVersion": 6,
   "runnable": 1,
   "author": "codefluegel",
   "license": "MIT",
